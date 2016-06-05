@@ -22,14 +22,14 @@ bool boomslang_Boolean::operator==(boomslang_Boolean other){
 }
 
 //Conversion
-boomslang_String boomslang_Boolean::boomslang_string(){
+boomslang_String boomslang_Boolean::boomslang_toString(){
     if(data == true){
         return boomslang_String("true");
     } else {
         return boomslang_String("false");
     }
 }
-boomslang_Number boomslang_Boolean::boomslang_number(){
+boomslang_Number boomslang_Boolean::boomslang_toNumber(){
     if(data == true){
         return boomslang_Number(1);
     } else {

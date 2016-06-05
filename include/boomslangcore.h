@@ -54,7 +54,7 @@ class boomslang_String: public boomslang_Object{
     boomslang_String operator+(const boomslang_String&);
     boomslang_String operator+(const std::string&);
     bool operator==(boomslang_String);
-    boomslang_Number boomslang_number();
+    boomslang_Number boomslang_toNumber();
     void boomslang_output();
     void boomslang_input();
     void boomslang_print();
@@ -83,12 +83,13 @@ class boomslang_Number: public boomslang_Object, public boomslang_Numeric{
     boomslang_Number operator/(const boomslang_Number&);
     boomslang_Number operator-();
     bool operator==(boomslang_Number);
+    bool operator!=(boomslang_Number);
     bool operator>(boomslang_Number);
     bool operator<(boomslang_Number);
     bool operator>=(boomslang_Number);
     bool operator<=(boomslang_Number);
     operator bool();
-    boomslang_String boomslang_string();
+    boomslang_String boomslang_toString();
     void boomslang_output();
     void boomslang_input();
     void boomslang_print();
@@ -134,8 +135,8 @@ class boomslang_Boolean: public boomslang_Object{
     void operator=(boomslang_Boolean);
     bool operator==(boomslang_Boolean);
     operator bool();
-    boomslang_String boomslang_string();
-    boomslang_Number boomslang_number();
+    boomslang_String boomslang_toString();
+    boomslang_Number boomslang_toNumber();
     void boomslang_output();
     void boomslang_input();
     void boomslang_print();

@@ -33,7 +33,7 @@ bool boomslang_String::operator==(boomslang_String other){
 }
 
 //Conversion
-boomslang_Number boomslang_String::boomslang_number(){
+boomslang_Number boomslang_String::boomslang_toNumber(){
     double result;
     std::stringstream(data) >> result;
     return boomslang_Number(result);

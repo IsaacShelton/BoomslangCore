@@ -48,7 +48,7 @@ boomslang_Number boomslang_Number::operator/(const boomslang_Number& other){
 }
 
 //Conversion
-boomslang_String boomslang_Number::boomslang_string(){
+boomslang_String boomslang_Number::boomslang_toString(){
     std::stringstream conversion;
     conversion << data;
     return boomslang_String(conversion.str());
@@ -57,6 +57,9 @@ boomslang_String boomslang_Number::boomslang_string(){
 //Comparison
 bool boomslang_Number::operator==(boomslang_Number other){
     return (data == other.data);
+}
+bool boomslang_Number::operator!=(boomslang_Number other){
+    return !(data == other.data);
 }
 bool boomslang_Number::operator>(boomslang_Number other){
     return (data > other.data);
