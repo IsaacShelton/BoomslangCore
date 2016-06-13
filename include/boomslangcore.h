@@ -7,30 +7,19 @@
 #include <iostream>
 #include <initializer_list>
 
-#define boomslang_none NULL
 #define boomslang_self (*this)
 
-class boomslang_Object{
-    #ifdef BOOMSLANGDEFINE_Object
-    BOOMSLANGDEFINE_Object;
-    #endif // BOOMSLANGDEFINE_Object
-};
+class boomslang_Object{};
 
-class boomslang_Numeric: public boomslang_Object{
-    #ifdef BOOMSLANGDEFINE_Numeric
-    BOOMSLANGDEFINE_Numeric;
-    #endif // BOOMSLANGDEFINE_Numeric
-};
-class boomslang_Collection: public boomslang_Object{
-    #ifdef BOOMSLANGDEFINE_Collection
-    BOOMSLANGDEFINE_Collection;
-    #endif // BOOMSLANGDEFINE_Collection
-};
+class boomslang_Numeric: public boomslang_Object{};
+class boomslang_Collection: public boomslang_Object{};
 
 class boomslang_String;
 class boomslang_Number;
+class boomslang_Positive;
 class boomslang_Byte;
 class boomslang_Boolean;
+class boomslang_Integer;
 
 //Default Exceptions
 class boomslang_Error;
@@ -50,22 +39,33 @@ class boomslang_String: public boomslang_Object{
     boomslang_String(const boomslang_String&);
     boomslang_String(const std::string&);
     void operator=(boomslang_String);
+    void operator+=(boomslang_String);
+    void operator-=(boomslang_String);
+    void operator*=(boomslang_String);
+    void operator/=(boomslang_String);
     void operator=(std::string&);
     boomslang_String operator+(const boomslang_String&);
+    boomslang_String operator+(const boomslang_String&) const;
     boomslang_String operator+(const std::string&);
     bool operator==(boomslang_String);
+    bool operator==(boomslang_String) const;
+    bool operator!=(boomslang_String);
+    bool operator!=(boomslang_String) const;
     boomslang_Number boomslang_toNumber();
+    boomslang_Positive boomslang_toPositive();
+    boomslang_Integer boomslang_toInteger();
+    operator std::string();
+    operator const char*();
     void boomslang_output();
+    void boomslang_output() const;
     void boomslang_input();
     void boomslang_print();
+    void boomslang_print() const;
     void boomslang_wait();
-
-    #ifdef BOOMSLANGDEFINE_String
-    BOOMSLANGDEFINE_String;
-    #endif // BOOMSLANGDEFINE_String
+    void boomslang_wait() const;
 };
 
-//Base numeric template
+//Base number template
 class boomslang_Number: public boomslang_Object, public boomslang_Numeric{
     public:
     double data;
@@ -74,29 +74,158 @@ class boomslang_Number: public boomslang_Object, public boomslang_Numeric{
     boomslang_Number(const double&);
     boomslang_Number(const int&);
     boomslang_Number(const bool&);
+    boomslang_Number(const uint32_t&);
     boomslang_Number(const boomslang_Byte&);
     boomslang_Number(const boomslang_Boolean&);
+    boomslang_Number(const boomslang_Positive&);
     void operator=(boomslang_Number);
+    void operator+=(boomslang_Number);
+    void operator-=(boomslang_Number);
+    void operator*=(boomslang_Number);
+    void operator/=(boomslang_Number);
     boomslang_Number operator+(const boomslang_Number&);
     boomslang_Number operator-(const boomslang_Number&);
     boomslang_Number operator*(const boomslang_Number&);
     boomslang_Number operator/(const boomslang_Number&);
     boomslang_Number operator-();
+    boomslang_Number operator+(const boomslang_Number&) const;
+    boomslang_Number operator-(const boomslang_Number&) const;
+    boomslang_Number operator*(const boomslang_Number&) const;
+    boomslang_Number operator/(const boomslang_Number&) const;
+    boomslang_Number operator-() const;
     bool operator==(boomslang_Number);
     bool operator!=(boomslang_Number);
     bool operator>(boomslang_Number);
     bool operator<(boomslang_Number);
     bool operator>=(boomslang_Number);
     bool operator<=(boomslang_Number);
+    bool operator==(boomslang_Number) const;
+    bool operator!=(boomslang_Number) const;
+    bool operator>(boomslang_Number) const;
+    bool operator<(boomslang_Number) const;
+    bool operator>=(boomslang_Number) const;
+    bool operator<=(boomslang_Number) const;
     operator bool();
+    operator int();
+    operator unsigned int();
+    operator double();
+    operator float();
     boomslang_String boomslang_toString();
+    boomslang_Positive boomslang_toPositive();
+    boomslang_Integer boomslang_toInteger();
     void boomslang_output();
+    void boomslang_output() const;
     void boomslang_input();
     void boomslang_print();
+    void boomslang_print() const;
+};
 
-    #ifdef BOOMSLANGDEFINE_Number
-    BOOMSLANGDEFINE_Number;
-    #endif // BOOMSLANGDEFINE_Number
+//Base positive template
+class boomslang_Positive: public boomslang_Object, public boomslang_Numeric{
+    public:
+    uint32_t data;
+    boomslang_Positive();
+    ~boomslang_Positive();
+    boomslang_Positive(const double&);
+    boomslang_Positive(const int&);
+    boomslang_Positive(const bool&);
+    boomslang_Positive(const uint32_t&);
+    boomslang_Positive(const boomslang_Byte&);
+    boomslang_Positive(const boomslang_Boolean&);
+    boomslang_Positive(const boomslang_Number&);
+    void operator=(boomslang_Positive);
+    void operator+=(boomslang_Positive);
+    void operator-=(boomslang_Positive);
+    void operator*=(boomslang_Positive);
+    void operator/=(boomslang_Positive);
+    boomslang_Positive operator+(const boomslang_Positive&);
+    boomslang_Positive operator-(const boomslang_Positive&);
+    boomslang_Positive operator*(const boomslang_Positive&);
+    boomslang_Positive operator/(const boomslang_Positive&);
+    boomslang_Positive operator+(const boomslang_Positive&) const;
+    boomslang_Positive operator-(const boomslang_Positive&) const;
+    boomslang_Positive operator*(const boomslang_Positive&) const;
+    boomslang_Positive operator/(const boomslang_Positive&) const;
+    bool operator==(boomslang_Positive);
+    bool operator!=(boomslang_Positive);
+    bool operator>(boomslang_Positive);
+    bool operator<(boomslang_Positive);
+    bool operator>=(boomslang_Positive);
+    bool operator<=(boomslang_Positive);
+    bool operator==(boomslang_Positive) const;
+    bool operator!=(boomslang_Positive) const;
+    bool operator>(boomslang_Positive) const;
+    bool operator<(boomslang_Positive) const;
+    bool operator>=(boomslang_Positive) const;
+    bool operator<=(boomslang_Positive) const;
+    operator bool();
+    operator int();
+    operator unsigned int();
+    operator double();
+    operator float();
+    boomslang_String boomslang_toString();
+    boomslang_Number boomslang_toNumber();
+    boomslang_Integer boomslang_toInteger();
+    void boomslang_output();
+    void boomslang_output() const;
+    void boomslang_input();
+    void boomslang_print();
+    void boomslang_print() const;
+};
+
+//Base integer template
+class boomslang_Integer: public boomslang_Object, public boomslang_Numeric{
+    public:
+    uint32_t data;
+    boomslang_Integer();
+    ~boomslang_Integer();
+    boomslang_Integer(const double&);
+    boomslang_Integer(const int&);
+    boomslang_Integer(const bool&);
+    boomslang_Integer(const uint32_t&);
+    boomslang_Integer(const boomslang_Byte&);
+    boomslang_Integer(const boomslang_Boolean&);
+    boomslang_Integer(const boomslang_Number&);
+    void operator=(boomslang_Integer);
+    void operator+=(boomslang_Integer);
+    void operator-=(boomslang_Integer);
+    void operator*=(boomslang_Integer);
+    void operator/=(boomslang_Integer);
+    boomslang_Integer operator+(const boomslang_Integer&);
+    boomslang_Integer operator-(const boomslang_Integer&);
+    boomslang_Integer operator*(const boomslang_Integer&);
+    boomslang_Integer operator/(const boomslang_Integer&);
+    boomslang_Integer operator-();
+    boomslang_Integer operator+(const boomslang_Integer&) const;
+    boomslang_Integer operator-(const boomslang_Integer&) const;
+    boomslang_Integer operator*(const boomslang_Integer&) const;
+    boomslang_Integer operator/(const boomslang_Integer&) const;
+    boomslang_Integer operator-() const;
+    bool operator==(boomslang_Integer);
+    bool operator!=(boomslang_Integer);
+    bool operator>(boomslang_Integer);
+    bool operator<(boomslang_Integer);
+    bool operator>=(boomslang_Integer);
+    bool operator<=(boomslang_Integer);
+    bool operator==(boomslang_Integer) const;
+    bool operator!=(boomslang_Integer) const;
+    bool operator>(boomslang_Integer) const;
+    bool operator<(boomslang_Integer) const;
+    bool operator>=(boomslang_Integer) const;
+    bool operator<=(boomslang_Integer) const;
+    operator bool();
+    operator int();
+    operator unsigned int();
+    operator double();
+    operator float();
+    boomslang_String boomslang_toString();
+    boomslang_Number boomslang_toNumber();
+    boomslang_Positive boomslang_toPositive();
+    void boomslang_output() const;
+    void boomslang_output();
+    void boomslang_input();
+    void boomslang_print() const;
+    void boomslang_print();
 };
 
 //Base byte template
@@ -125,6 +254,7 @@ class boomslang_Byte: public boomslang_Object{
     #endif // BOOMSLANGDEFINE_Byte
 };
 
+// Base Boolean template
 class boomslang_Boolean: public boomslang_Object{
     public:
     bool data;
@@ -140,10 +270,6 @@ class boomslang_Boolean: public boomslang_Object{
     void boomslang_output();
     void boomslang_input();
     void boomslang_print();
-
-    #ifdef BOOMSLANGDEFINE_Boolean
-    BOOMSLANGDEFINE_Boolean;
-    #endif // BOOMSLANGDEFINE_Boolean
 };
 
 //Base list template
@@ -180,8 +306,6 @@ class boomslang_List: public boomslang_Object, public boomslang_Collection{
     void boomslang_insert(const what&, const boomslang_Number&);
     void boomslang_remove();
     void boomslang_remove(const boomslang_Number&);
-
-    // Can't be extended
 };
 
 //Base map template
@@ -192,8 +316,6 @@ class boomslang_Map: public boomslang_Object, public boomslang_Collection{
 
     boomslang_Map();
     ~boomslang_Map();
-
-    // Can't be extended
 };
 
 //Default Exception templates
@@ -204,10 +326,6 @@ class boomslang_Error: public boomslang_Object{
     boomslang_Error();
     boomslang_Error(boomslang_String);
     boomslang_String boomslang_getCause();
-
-    #ifdef BOOMSLANGDEFINE_Error
-    BOOMSLANGDEFINE_Error;
-    #endif // BOOMSLANGDEFINE_Error
 };
 class boomslang_Exception: public boomslang_Object{
     public:
@@ -216,55 +334,31 @@ class boomslang_Exception: public boomslang_Object{
     boomslang_Exception();
     boomslang_Exception(boomslang_String);
     boomslang_String boomslang_getCause();
-
-    #ifdef BOOMSLANGDEFINE_Exception
-    BOOMSLANGDEFINE_Exception;
-    #endif // BOOMSLANGDEFINE_Exception
 };
 class boomslang_NotFound: public boomslang_Object, public boomslang_Exception{
     public:
     boomslang_NotFound();
     boomslang_NotFound(boomslang_String);
-
-    #ifdef BOOMSLANGDEFINE_NotFound
-    BOOMSLANGDEFINE_NotFound;
-    #endif // BOOMSLANGDEFINE_NotFound
 };
 class boomslang_Invalid: public boomslang_Object, public boomslang_Exception{
     public:
     boomslang_Invalid();
     boomslang_Invalid(boomslang_String);
-
-    #ifdef BOOMSLANGDEFINE_Invalid
-    BOOMSLANGDEFINE_Invalid;
-    #endif // BOOMSLANGDEFINE_Invalid
 };
 class boomslang_OutOfIndex: public boomslang_Object, public boomslang_Exception{
     public:
     boomslang_OutOfIndex();
     boomslang_OutOfIndex(boomslang_String);
-
-    #ifdef BOOMSLANGDEFINE_OutOfIndex
-    BOOMSLANGDEFINE_OutOfIndex;
-    #endif // BOOMSLANGDEFINE_OutOfIndex
 };
 class boomslang_MemoryFailure: public boomslang_Object, public boomslang_Exception{
     public:
     boomslang_MemoryFailure();
     boomslang_MemoryFailure(boomslang_String);
-
-    #ifdef BOOMSLANGDEFINE_MemoryFailure
-    BOOMSLANGDEFINE_MemoryFailure;
-    #endif // BOOMSLANGDEFINE_MemoryFailure
 };
 class boomslang_ZeroDivision: public boomslang_Object, public boomslang_Exception{
     public:
     boomslang_ZeroDivision();
     boomslang_ZeroDivision(boomslang_String);
-
-    #ifdef BOOMSLANGDEFINE_ZeroDivision
-    BOOMSLANGDEFINE_ZeroDivision;
-    #endif // BOOMSLANGDEFINE_ZeroDivision
 };
 
 //Base List functions

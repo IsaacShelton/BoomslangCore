@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <math.h>
 
 #include "../include/boomslangcore.h"
 
@@ -10,10 +11,24 @@ boomslang_Number::~boomslang_Number(){}
 boomslang_Number::boomslang_Number(const double& d){data = d;}
 boomslang_Number::boomslang_Number(const int& i){data = i;}
 boomslang_Number::boomslang_Number(const bool& b){data = b;}
+boomslang_Number::boomslang_Number(const uint32_t& b){data = b;}
 boomslang_Number::boomslang_Number(const boomslang_Byte& b){data = b.data;}
 boomslang_Number::boomslang_Number(const boomslang_Boolean& b){data = b.data;}
+boomslang_Number::boomslang_Number(const boomslang_Positive& b){data = b.data;}
 
 boomslang_Number::operator bool(){
+    return data;
+}
+boomslang_Number::operator int(){
+    return data;
+}
+boomslang_Number::operator unsigned int(){
+    return data;
+}
+boomslang_Number::operator double(){
+    return data;
+}
+boomslang_Number::operator float(){
     return data;
 }
 
@@ -21,9 +36,28 @@ boomslang_Number::operator bool(){
 void boomslang_Number::operator=(boomslang_Number other){
     data = other.data;
 }
+//Addition Assignment
+void boomslang_Number::operator+=(boomslang_Number other){
+    data += other.data;
+}
+//Subtraction Assignment
+void boomslang_Number::operator-=(boomslang_Number other){
+    data -= other.data;
+}
+//Multiplication Assignment
+void boomslang_Number::operator*=(boomslang_Number other){
+    data *= other.data;
+}
+//Division Assignment
+void boomslang_Number::operator/=(boomslang_Number other){
+    data /= other.data;
+}
 
 //Addition
 boomslang_Number boomslang_Number::operator+(const boomslang_Number& other){
+    return this->data + other.data;
+}
+boomslang_Number boomslang_Number::operator+(const boomslang_Number& other) const{
     return this->data + other.data;
 }
 
@@ -31,9 +65,15 @@ boomslang_Number boomslang_Number::operator+(const boomslang_Number& other){
 boomslang_Number boomslang_Number::operator-(const boomslang_Number& other){
     return this->data - other.data;
 }
+boomslang_Number boomslang_Number::operator-(const boomslang_Number& other) const{
+    return this->data - other.data;
+}
 
 //Oppisite
 boomslang_Number boomslang_Number::operator-(){
+    return boomslang_Number(-data);
+}
+boomslang_Number boomslang_Number::operator-() const{
     return boomslang_Number(-data);
 }
 
@@ -41,9 +81,15 @@ boomslang_Number boomslang_Number::operator-(){
 boomslang_Number boomslang_Number::operator*(const boomslang_Number& other){
     return this->data * other.data;
 }
+boomslang_Number boomslang_Number::operator*(const boomslang_Number& other) const{
+    return this->data * other.data;
+}
 
 //Division
 boomslang_Number boomslang_Number::operator/(const boomslang_Number& other){
+    return this->data / other.data;
+}
+boomslang_Number boomslang_Number::operator/(const boomslang_Number& other) const{
     return this->data / other.data;
 }
 
@@ -53,29 +99,63 @@ boomslang_String boomslang_Number::boomslang_toString(){
     conversion << data;
     return boomslang_String(conversion.str());
 }
+boomslang_Positive boomslang_Number::boomslang_toPositive(){
+    if(data >= 0){
+        return boomslang_Positive(floor(data));
+    }
+    else {
+        return boomslang_Positive(floor(-data));
+    }
+}
+boomslang_Integer boomslang_Number::boomslang_toInteger(){
+    return boomslang_Integer(data);
+}
 
 //Comparison
 bool boomslang_Number::operator==(boomslang_Number other){
     return (data == other.data);
 }
+bool boomslang_Number::operator==(boomslang_Number other) const{
+    return (data == other.data);
+}
 bool boomslang_Number::operator!=(boomslang_Number other){
+    return !(data == other.data);
+}
+bool boomslang_Number::operator!=(boomslang_Number other) const{
     return !(data == other.data);
 }
 bool boomslang_Number::operator>(boomslang_Number other){
     return (data > other.data);
 }
+bool boomslang_Number::operator>(boomslang_Number other) const{
+    return (data > other.data);
+}
 bool boomslang_Number::operator<(boomslang_Number other){
+    return (data < other.data);
+}
+bool boomslang_Number::operator<(boomslang_Number other) const{
     return (data < other.data);
 }
 bool boomslang_Number::operator>=(boomslang_Number other){
     return (data >= other.data);
 }
+bool boomslang_Number::operator>=(boomslang_Number other) const{
+    return (data >= other.data);
+}
 bool boomslang_Number::operator<=(boomslang_Number other){
+    return (data <= other.data);
+}
+bool boomslang_Number::operator<=(boomslang_Number other) const{
     return (data <= other.data);
 }
 
 //Console methods
 void boomslang_Number::boomslang_output(){
+    std::ostringstream convert;
+    convert << data;
+    std::cout << convert.str() << std::endl;
+}
+void boomslang_Number::boomslang_output() const{
     std::ostringstream convert;
     convert << data;
     std::cout << convert.str() << std::endl;
@@ -87,6 +167,11 @@ void boomslang_Number::boomslang_input(){
     if( ! (std::istringstream(input) >> data) ) data = 0;
 }
 void boomslang_Number::boomslang_print(){
+    std::ostringstream convert;
+    convert << data;
+    std::cout << convert.str();
+}
+void boomslang_Number::boomslang_print() const{
     std::ostringstream convert;
     convert << data;
     std::cout << convert.str();
