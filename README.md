@@ -1,5 +1,5 @@
 # BoomslangCore
-The Core Templates of The Boomslang Programming Language<br>
+The Core Classes of The Boomslang Programming Language<br>
 <br>
 ## Completed Types:<br>
 &nbsp;&nbsp;String<br>
