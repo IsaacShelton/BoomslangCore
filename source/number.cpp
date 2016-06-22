@@ -37,6 +37,10 @@ boomslang_Number::operator boomslang_Integer(){
 boomslang_Number::operator boomslang_UnsignedInteger(){
     return boomslang_UnsignedInteger( (unsigned int)(data) );
 }
+boomslang_Number::operator boomslang_Byte(){
+    return boomslang_Byte( (uint8_t)(data) );
+}
+
 
 //Assignment
 void boomslang_Number::operator=(boomslang_Number other){
@@ -115,6 +119,9 @@ boomslang_UnsignedInteger boomslang_Number::boomslang_toUnsignedInteger(){
 }
 boomslang_Integer boomslang_Number::boomslang_toInteger(){
     return boomslang_Integer(data);
+}
+boomslang_Byte boomslang_Number::boomslang_toByte(){
+    return boomslang_Byte(data);
 }
 
 //Comparison

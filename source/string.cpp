@@ -68,14 +68,19 @@ boomslang_Number boomslang_String::boomslang_toNumber(){
     return boomslang_Number(result);
 }
 boomslang_UnsignedInteger boomslang_String::boomslang_toUnsignedInteger(){
-    double result;
+    uint32_t result;
     std::stringstream(data) >> result;
     return boomslang_UnsignedInteger(result);
 }
 boomslang_Integer boomslang_String::boomslang_toInteger(){
-    double result;
+    int32_t result;
     std::stringstream(data) >> result;
     return boomslang_Integer(result);
+}
+boomslang_Byte boomslang_String::boomslang_toByte(){
+    uint8_t result;
+    std::stringstream(data) >> result;
+    return boomslang_Byte(result);
 }
 
 boomslang_String::operator std::string(){

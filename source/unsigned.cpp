@@ -112,6 +112,9 @@ boomslang_Number boomslang_UnsignedInteger::boomslang_toNumber(){
 boomslang_Integer boomslang_UnsignedInteger::boomslang_toInteger(){
     return boomslang_Integer(data);
 }
+boomslang_Byte boomslang_UnsignedInteger::boomslang_toByte(){
+    return boomslang_Byte(data);
+}
 
 //Comparison
 bool boomslang_UnsignedInteger::operator==(boomslang_UnsignedInteger other){
