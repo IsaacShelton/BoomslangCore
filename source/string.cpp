@@ -67,10 +67,10 @@ boomslang_Number boomslang_String::boomslang_toNumber(){
     std::stringstream(data) >> result;
     return boomslang_Number(result);
 }
-boomslang_Positive boomslang_String::boomslang_toPositive(){
+boomslang_UnsignedInteger boomslang_String::boomslang_toUnsignedInteger(){
     double result;
     std::stringstream(data) >> result;
-    return boomslang_Positive(result);
+    return boomslang_UnsignedInteger(result);
 }
 boomslang_Integer boomslang_String::boomslang_toInteger(){
     double result;
