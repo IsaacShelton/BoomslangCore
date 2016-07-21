@@ -7,7 +7,16 @@
 #include <iostream>
 #include <initializer_list>
 
-#define boomslang_self (*this)
+#define boomslang_self  (*this)
+#define boomslang_true  boomslang_Boolean(1)
+#define boomslang_false boomslang_Boolean(0)
+
+#define boomslang_cint    int
+#define boomslang_cuint   unsigned int
+#define boomslang_cchar   char
+#define boomslang_cbool   bool
+#define boomslang_cfloat  float
+#define boomslang_cdouble double
 
 class boomslang_String;
 class boomslang_Number;
@@ -33,11 +42,11 @@ class boomslang_String{
     ~boomslang_String();
     boomslang_String(const boomslang_String&);
     boomslang_String(const std::string&);
-    void operator=(boomslang_String);
-    void operator+=(boomslang_String);
-    void operator-=(boomslang_String);
-    void operator*=(boomslang_String);
-    void operator/=(boomslang_String);
+    void operator=(const boomslang_String&);
+    void operator+=(const boomslang_String&);
+    void operator-=(const boomslang_String&);
+    void operator*=(const boomslang_String&);
+    void operator/=(const boomslang_String&);
     void operator=(std::string&);
     boomslang_String operator+(const boomslang_String&);
     boomslang_String operator+(const boomslang_String&) const;
@@ -335,8 +344,15 @@ class boomslang_List{
     void boomslang_prepend(const what&);
     void boomslang_insert(const boomslang_List<what>&, const boomslang_Number&);
     void boomslang_insert(const what&, const boomslang_Number&);
+    void boomslang_insert(const boomslang_List<what>&, const boomslang_Integer&);
+    void boomslang_insert(const what&, const boomslang_Integer&);
     void boomslang_remove();
+    void boomslang_remove(const boomslang_Integer&);
     void boomslang_remove(const boomslang_Number&);
+
+    what boomslang_get(const boomslang_Number&);
+    what boomslang_get(const boomslang_Integer&);
+    boomslang_Integer boomslang_length();
 };
 
 //Base map template
@@ -479,9 +495,42 @@ template <class what> void boomslang_List<what>::boomslang_insert(const boomslan
         }
     }
 }
+template <class what> void boomslang_List<what>::boomslang_insert(const what& other, const boomslang_Integer& where){
+    if((int)where.data <= (int)data.size() and (int)where.data>-1){
+        data.insert(data.begin() + (int)where.data, new what(other));
+    } else if((int)where.data > (int)data.size()){
+        data.push_back( new what(other) );
+    } else {
+        data.insert(data.begin(), new what(other));
+    }
+}
+template <class what> void boomslang_List<what>::boomslang_insert(const boomslang_List<what>& another_list, const boomslang_Integer& where){
+    if((int)where.data <= (int)data.size() and (int)where.data>-1){
+        for(int i = another_list.data.size()-1; i > -1; i--){
+            data.insert(data.begin() + (int)where.data,new what(another_list[i]));
+        }
+    } else if((int)where.data > (int)data.size()){
+        for(int i = 0; i < another_list.data.size(); i++){
+            data.push_back( new what(another_list[i]) );
+        }
+    } else {
+        for(int i = another_list.data.size()-1; i > -1; i--){
+            data.insert(data.begin(),new what(another_list[i]));
+        }
+    }
+}
 
 template <class what> void boomslang_List<what>::boomslang_remove(){
-    if(data.size > 0) data.pop_back();
+    if(data.size() > 0) data.pop_back();
+}
+template <class what> void boomslang_List<what>::boomslang_remove(const boomslang_Integer& where){
+    if((int)where.data <= (int)data.size() and -1 < (int)where.data){
+        data.erase(data.begin() + (int)where.data);
+    } else if((int)where.data > (int)data.size()){
+        if(data.size() > 0) data.pop_back();
+    } else {
+        data.erase(data.begin());
+    }
 }
 template <class what> void boomslang_List<what>::boomslang_remove(const boomslang_Number& where){
     if((int)where.data <= (int)data.size() and -1 < (int)where.data){
@@ -498,6 +547,18 @@ template <class what> void boomslang_List<what>::boomslang_clear(){
         delete data[i];
     }
     data.clear();
+}
+
+template <class what> what boomslang_List<what>::boomslang_get(const boomslang_Number& n){
+    return *(data[ int(n.data) ]);
+}
+
+template <class what> what boomslang_List<what>::boomslang_get(const boomslang_Integer& n){
+    return *(data[ int(n.data) ]);
+}
+
+template <class what> boomslang_Integer boomslang_List<what>::boomslang_length(){
+    return boomslang_Integer(data.size());
 }
 
 //Base Map Functions

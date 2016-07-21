@@ -12,7 +12,7 @@ boomslang_String::boomslang_String(const boomslang_String& s){data = s.data;}
 boomslang_String::boomslang_String(const std::string& s){data = s;}
 
 //Assignment
-void boomslang_String::operator=(boomslang_String other){
+void boomslang_String::operator=(const boomslang_String& other){
     data = other.data;
 }
 void boomslang_String::operator=(std::string& other){
@@ -20,19 +20,19 @@ void boomslang_String::operator=(std::string& other){
 }
 
 //Addition Assignment
-void boomslang_String::operator+=(boomslang_String other){
+void boomslang_String::operator+=(const boomslang_String& other){
     data += other.data;
 }
 //Subtraction Assignment
-void boomslang_String::operator-=(boomslang_String other){
+void boomslang_String::operator-=(const boomslang_String& other){
     // Do nothing
 }
 //Multiplication Assignment
-void boomslang_String::operator*=(boomslang_String other){
+void boomslang_String::operator*=(const boomslang_String& other){
     // Do nothing
 }
 //Division Assignment
-void boomslang_String::operator/=(boomslang_String other){
+void boomslang_String::operator/=(const boomslang_String& other){
     // Do nothing
 }
 
