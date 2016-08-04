@@ -123,6 +123,14 @@ boomslang_Integer boomslang_Number::boomslang_toInteger(){
 boomslang_Byte boomslang_Number::boomslang_toByte(){
     return boomslang_Byte(data);
 }
+boomslang_Boolean boomslang_Number::boomslang_toBoolean(){
+    if(data == 1){
+        return boomslang_Boolean(true);
+    }
+    else {
+        return boomslang_Boolean(false);
+    }
+}
 
 //Comparison
 bool boomslang_Number::operator==(boomslang_Number other){

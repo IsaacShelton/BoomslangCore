@@ -122,6 +122,14 @@ boomslang_UnsignedInteger boomslang_Integer::boomslang_toUnsignedInteger(){
 boomslang_Byte boomslang_Integer::boomslang_toByte(){
     return boomslang_Byte(data);
 }
+boomslang_Boolean boomslang_Integer::boomslang_toBoolean(){
+    if(data == 1){
+        return boomslang_Boolean(true);
+    }
+    else {
+        return boomslang_Boolean(false);
+    }
+}
 
 //Comparison
 bool boomslang_Integer::operator==(boomslang_Integer other){

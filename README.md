@@ -7,10 +7,11 @@ The Core Classes of The Boomslang Programming Language<br>
 &nbsp;&nbsp;Integer<br>
 &nbsp;&nbsp;UnsignedInteger<br>
 &nbsp;&nbsp;Byte<br>
-<br>
-## Partially Complete Types:<br>
 &nbsp;&nbsp;Boolean<br>
 &nbsp;&nbsp;List<br>
+<br>
+## Partially Complete Types:<br>
+&nbsp;&nbsp;Array<br>
 &nbsp;&nbsp;Map<br>
 <br>
 ## Complete Errors/Exceptions:<br>

@@ -59,6 +59,7 @@ class boomslang_String{
     boomslang_UnsignedInteger boomslang_toUnsignedInteger();
     boomslang_Integer boomslang_toInteger();
     boomslang_Byte boomslang_toByte();
+    boomslang_Boolean boomslang_toBoolean();
     operator std::string();
     operator const char*();
     void boomslang_output();
@@ -70,7 +71,7 @@ class boomslang_String{
     void boomslang_wait() const;
 };
 
-//Base number template
+//Base number class
 class boomslang_Number{
     public:
     double data;
@@ -122,6 +123,7 @@ class boomslang_Number{
     boomslang_UnsignedInteger boomslang_toUnsignedInteger();
     boomslang_Integer boomslang_toInteger();
     boomslang_Byte boomslang_toByte();
+    boomslang_Boolean boomslang_toBoolean();
     void boomslang_output();
     void boomslang_output() const;
     void boomslang_input();
@@ -129,7 +131,7 @@ class boomslang_Number{
     void boomslang_print() const;
 };
 
-//Base positive template
+//Base positive class
 class boomslang_UnsignedInteger{
     public:
     uint32_t data;
@@ -176,6 +178,7 @@ class boomslang_UnsignedInteger{
     boomslang_Number boomslang_toNumber();
     boomslang_Integer boomslang_toInteger();
     boomslang_Byte boomslang_toByte();
+    boomslang_Boolean boomslang_toBoolean();
     void boomslang_output();
     void boomslang_output() const;
     void boomslang_input();
@@ -183,7 +186,7 @@ class boomslang_UnsignedInteger{
     void boomslang_print() const;
 };
 
-//Base integer template
+//Base integer class
 class boomslang_Integer{
     public:
     int32_t data;
@@ -232,6 +235,7 @@ class boomslang_Integer{
     boomslang_Number boomslang_toNumber();
     boomslang_UnsignedInteger boomslang_toUnsignedInteger();
     boomslang_Byte boomslang_toByte();
+    boomslang_Boolean boomslang_toBoolean();
     void boomslang_output() const;
     void boomslang_output();
     void boomslang_input();
@@ -239,7 +243,7 @@ class boomslang_Integer{
     void boomslang_print();
 };
 
-//Base byte template
+//Base byte class
 class boomslang_Byte{
     public:
     uint8_t data;
@@ -254,6 +258,10 @@ class boomslang_Byte{
     boomslang_Byte(const boomslang_Integer&);
     boomslang_Byte(const boomslang_UnsignedInteger&);
     void operator=(boomslang_Byte);
+    void operator+=(boomslang_Byte);
+    void operator-=(boomslang_Byte);
+    void operator*=(boomslang_Byte);
+    void operator/=(boomslang_Byte);
     boomslang_Byte operator+(const boomslang_Byte&);
     boomslang_Byte operator-(const boomslang_Byte&);
     boomslang_Byte operator*(const boomslang_Byte&);
@@ -285,41 +293,67 @@ class boomslang_Byte{
     boomslang_Number boomslang_toNumber();
     boomslang_UnsignedInteger boomslang_toUnsignedInteger();
     boomslang_Integer boomslang_toInteger();
+    boomslang_Boolean boomslang_toBoolean();
     void boomslang_output();
     void boomslang_input();
     void boomslang_print();
-
-    #ifdef BOOMSLANGDEFINE_Byte
-    BOOMSLANGDEFINE_Byte;
-    #endif // BOOMSLANGDEFINE_Byte
 };
 
-// Base Boolean template
+// Base Boolean class
 class boomslang_Boolean{
     public:
     bool data;
     boomslang_Boolean();
-    boomslang_Boolean(const bool&);
+    boomslang_Boolean(bool);
     boomslang_Boolean(const boomslang_Number&);
+    boomslang_Boolean(const boomslang_Integer&);
+    boomslang_Boolean(const boomslang_UnsignedInteger&);
     ~boomslang_Boolean();
     void operator=(boomslang_Boolean);
-    bool operator==(boomslang_Boolean);
+    void operator+=(boomslang_Boolean);
+    void operator-=(boomslang_Boolean);
+    void operator*=(boomslang_Boolean);
+    void operator/=(boomslang_Boolean);
+    boomslang_Boolean operator+(const boomslang_Boolean&);
+    boomslang_Boolean operator-(const boomslang_Boolean&);
+    boomslang_Boolean operator*(const boomslang_Boolean&);
+    boomslang_Boolean operator/(const boomslang_Boolean&);
+    boomslang_Boolean operator-();
+    boomslang_Boolean operator+(const boomslang_Boolean&) const;
+    boomslang_Boolean operator-(const boomslang_Boolean&) const;
+    boomslang_Boolean operator*(const boomslang_Boolean&) const;
+    boomslang_Boolean operator/(const boomslang_Boolean&) const;
+    boomslang_Boolean operator-() const;
+    boomslang_Boolean operator==(boomslang_Boolean);
+    boomslang_Boolean operator!=(boomslang_Boolean);
+    boomslang_Boolean operator>(boomslang_Boolean);
+    boomslang_Boolean operator<(boomslang_Boolean);
+    boomslang_Boolean operator>=(boomslang_Boolean);
+    boomslang_Boolean operator<=(boomslang_Boolean);
+    boomslang_Boolean operator!();
+    boomslang_Boolean operator==(boomslang_Boolean) const;
+    boomslang_Boolean operator!=(boomslang_Boolean) const;
+    boomslang_Boolean operator>(boomslang_Boolean) const;
+    boomslang_Boolean operator<(boomslang_Boolean) const;
+    boomslang_Boolean operator>=(boomslang_Boolean) const;
+    boomslang_Boolean operator<=(boomslang_Boolean) const;
+    boomslang_Boolean operator!() const;
     operator bool();
     boomslang_String boomslang_toString();
     boomslang_Number boomslang_toNumber();
+    boomslang_Integer boomslang_toInteger();
+    boomslang_UnsignedInteger boomslang_toUnsignedInteger();
+    boomslang_Byte boomslang_toByte();
     void boomslang_output();
     void boomslang_input();
     void boomslang_print();
 };
 
-//Base list template
+//Base list class
 template <class what>
 class boomslang_List{
     public:
-    std::vector<what*> data;
-
-    typedef typename std::vector<what*>::iterator iterator;
-    typedef typename std::vector<what*>::const_iterator const_iterator;
+    std::vector<what> data;
 
     boomslang_List();
     ~boomslang_List();
@@ -331,12 +365,6 @@ class boomslang_List{
     boomslang_List<what> operator+(const boomslang_List<what>&);
     void operator+=(const boomslang_List<what>&);
     void operator+=(const what&);
-    iterator begin() {return data.begin();}
-    const_iterator begin() const {return data.begin();}
-    const_iterator cbegin() const {return data.cbegin();}
-    iterator end() {return data.end();}
-    const_iterator end() const {return data.end();}
-    const_iterator cend() const {return data.cend();}
     void boomslang_clear();
     void boomslang_append(const boomslang_List<what>&);
     void boomslang_append(const what&);
@@ -350,12 +378,29 @@ class boomslang_List{
     void boomslang_remove(const boomslang_Integer&);
     void boomslang_remove(const boomslang_Number&);
 
-    what boomslang_get(const boomslang_Number&);
-    what boomslang_get(const boomslang_Integer&);
+    what& boomslang_get(const boomslang_Number&);
+    what& boomslang_get(const boomslang_Integer&);
     boomslang_Integer boomslang_length();
 };
 
-//Base map template
+//Base array class
+template <class what>
+class boomslang_Array{
+    public:
+    what* data = NULL;
+
+    boomslang_Array();
+    boomslang_Array(const boomslang_Number&);
+    boomslang_Array(const boomslang_Integer&);
+    ~boomslang_Array();
+    void boomslang_resize(const boomslang_Number&);
+    void boomslang_resize(const boomslang_Integer&);
+    what& boomslang_get(const boomslang_Number&);
+    what& boomslang_get(const boomslang_Integer&);
+    void boomslang_clear();
+};
+
+//Base map class
 template <class key, class what>
 class boomslang_Map{
     public:
@@ -410,112 +455,110 @@ class boomslang_ZeroDivision: public boomslang_Exception{
 
 //Base List functions
 template <class what> boomslang_List<what>::boomslang_List(){}
-template <class what> boomslang_List<what>::~boomslang_List(){
-    this->boomslang_clear();
-}
+template <class what> boomslang_List<what>::~boomslang_List(){}
 template <class what> boomslang_List<what>::boomslang_List(std::initializer_list<what> array_data){
     this->boomslang_clear();
 
     for(what object: array_data){
-        data.push_back( new what(object) );
+        data.push_back(object);
     }
 }
 template <class what> what& boomslang_List<what>::operator[](int index){
-    if(index < data.size() and index >= 0) return *data[index]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
+    if(index < data.size() and index >= 0) return data[index]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
 }
 template <class what> what& boomslang_List<what>::operator[](int index) const{
-    if(index < data.size() and index >= 0) return *data[index]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
+    if(index < data.size() and index >= 0) return data[index]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
 }
 template <class what> what& boomslang_List<what>::operator[](const boomslang_Number& index){
-    if((int)index.data < data.size() and (int)index.data >= 0) return *data[(int)index.data]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
+    if((int)index.data < data.size() and (int)index.data >= 0) return data[(int)index.data]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
 }
 template <class what> what& boomslang_List<what>::operator[](const boomslang_Number& index) const{
-    if((int)index.data < data.size() and (int)index.data >= 0) return *data[(int)index.data]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
+    if((int)index.data < data.size() and (int)index.data >= 0) return data[(int)index.data]; else throw boomslang_OutOfIndex(boomslang_String("Element not in List"));
 }
 template <class what> boomslang_List<what> boomslang_List<what>::operator+(const boomslang_List<what>& another_list){
     boomslang_List<what> new_list;
 
     for(int i = 0; i < data.size(); i++){
-        new_list.data.push_back( new what(*data[i]) );
+        new_list.data.push_back(data[i]);
     }
 
     for(int i = 0; i < another_list.data.size(); i++){
-        new_list.data.push_back( new what(another_list[i]) );
+        new_list.data.push_back(another_list[i]);
     }
     return new_list;
 }
 template <class what> void boomslang_List<what>::operator+=(const boomslang_List<what>& another_list){
     for(int i = 0; i < another_list.data.size(); i++){
-        data.push_back( new what(another_list[i]) );
+        data.push_back(another_list[i]);
     }
 }
 template <class what> void boomslang_List<what>::operator+=(const what& other){
-    data.push_back( other.clone() );
+    data.push_back(other);
 }
 
 template <class what> void boomslang_List<what>::boomslang_append(const what& other){
-    data.push_back( new what(other) );
+    data.push_back(other);
 }
 template <class what> void boomslang_List<what>::boomslang_append(const boomslang_List<what>& another_list){
     for(int i = 0; i < another_list.data.size(); i++){
-        data.push_back( new what(another_list[i]) );
+        data.push_back(another_list[i]);
     }
 }
 
 template <class what> void boomslang_List<what>::boomslang_prepend(const what& other){
-    data.insert(data.begin(), new what(other));
+    data.insert(data.begin(), other);
 }
 template <class what> void boomslang_List<what>::boomslang_prepend(const boomslang_List<what>& another_list){
     for(int i = another_list.data.size()-1; i > -1; i--){
-        data.insert(data.begin(),new what(another_list[i]));
+        data.insert(data.begin(), another_list[i]);
     }
 }
 
 template <class what> void boomslang_List<what>::boomslang_insert(const what& other, const boomslang_Number& where){
-    if((int)where.data <= (int)data.size() and (int)where.data>-1){
-        data.insert(data.begin() + (int)where.data, new what(other));
-    } else if((int)where.data > (int)data.size()){
-        data.push_back( new what(other) );
+    if((int) where.data <= (int) data.size() and (int) where.data>-1){
+        data.insert(data.begin() + (int) where.data, other);
+    } else if((int) where.data > (int) data.size()){
+        data.push_back(other);
     } else {
-        data.insert(data.begin(), new what(other));
+        data.insert(data.begin(), other);
     }
 }
 template <class what> void boomslang_List<what>::boomslang_insert(const boomslang_List<what>& another_list, const boomslang_Number& where){
-    if((int)where.data <= (int)data.size() and (int)where.data>-1){
+    if((int) where.data <= (int) data.size() and (int) where.data>-1){
         for(int i = another_list.data.size()-1; i > -1; i--){
-            data.insert(data.begin() + (int)where.data,new what(another_list[i]));
+            data.insert(data.begin() + (int) where.data, another_list[i]);
         }
-    } else if((int)where.data > (int)data.size()){
+    } else if((int) where.data > (int) data.size()){
         for(int i = 0; i < another_list.data.size(); i++){
-            data.push_back( new what(another_list[i]) );
+            data.push_back(another_list[i]);
         }
     } else {
         for(int i = another_list.data.size()-1; i > -1; i--){
-            data.insert(data.begin(),new what(another_list[i]));
+            data.insert(data.begin(), another_list[i]);
         }
     }
 }
 template <class what> void boomslang_List<what>::boomslang_insert(const what& other, const boomslang_Integer& where){
-    if((int)where.data <= (int)data.size() and (int)where.data>-1){
-        data.insert(data.begin() + (int)where.data, new what(other));
-    } else if((int)where.data > (int)data.size()){
-        data.push_back( new what(other) );
+    if((int) where.data <= (int) data.size() and (int) where.data>-1){
+        data.insert(data.begin() + (int) where.data, other);
+    } else if((int) where.data > (int) data.size()){
+        data.push_back(other);
     } else {
-        data.insert(data.begin(), new what(other));
+        data.insert(data.begin(), other);
     }
 }
 template <class what> void boomslang_List<what>::boomslang_insert(const boomslang_List<what>& another_list, const boomslang_Integer& where){
-    if((int)where.data <= (int)data.size() and (int)where.data>-1){
+    if((int) where.data <= (int) data.size() and (int) where.data>-1){
         for(int i = another_list.data.size()-1; i > -1; i--){
-            data.insert(data.begin() + (int)where.data,new what(another_list[i]));
+            data.insert(data.begin() + (int) where.data, another_list[i]);
         }
-    } else if((int)where.data > (int)data.size()){
+    } else if((int) where.data > (int) data.size()){
         for(int i = 0; i < another_list.data.size(); i++){
-            data.push_back( new what(another_list[i]) );
+            data.push_back(another_list[i]);
         }
     } else {
         for(int i = another_list.data.size()-1; i > -1; i--){
-            data.insert(data.begin(),new what(another_list[i]));
+            data.insert(data.begin(), another_list[i]);
         }
     }
 }
@@ -524,18 +567,18 @@ template <class what> void boomslang_List<what>::boomslang_remove(){
     if(data.size() > 0) data.pop_back();
 }
 template <class what> void boomslang_List<what>::boomslang_remove(const boomslang_Integer& where){
-    if((int)where.data <= (int)data.size() and -1 < (int)where.data){
-        data.erase(data.begin() + (int)where.data);
-    } else if((int)where.data > (int)data.size()){
+    if((int) where.data <= (int) data.size() and -1 < (int) where.data){
+        data.erase(data.begin() + (int) where.data);
+    } else if((int) where.data > (int) data.size()){
         if(data.size() > 0) data.pop_back();
     } else {
         data.erase(data.begin());
     }
 }
 template <class what> void boomslang_List<what>::boomslang_remove(const boomslang_Number& where){
-    if((int)where.data <= (int)data.size() and -1 < (int)where.data){
-        data.erase(data.begin() + (int)where.data);
-    } else if((int)where.data > (int)data.size()){
+    if((int) where.data <= (int) data.size() and -1 < (int) where.data){
+        data.erase(data.begin() + (int) where.data);
+    } else if((int) where.data > (int) data.size()){
         if(data.size() > 0) data.pop_back();
     } else {
         data.erase(data.begin());
@@ -543,22 +586,49 @@ template <class what> void boomslang_List<what>::boomslang_remove(const boomslan
 }
 
 template <class what> void boomslang_List<what>::boomslang_clear(){
-    for(int i = 0; i < data.size(); i++){
-        delete data[i];
-    }
     data.clear();
 }
 
-template <class what> what boomslang_List<what>::boomslang_get(const boomslang_Number& n){
-    return *(data[ int(n.data) ]);
+template <class what> what& boomslang_List<what>::boomslang_get(const boomslang_Number& n){
+    return data[ int(n.data) ];
 }
 
-template <class what> what boomslang_List<what>::boomslang_get(const boomslang_Integer& n){
-    return *(data[ int(n.data) ]);
+template <class what> what& boomslang_List<what>::boomslang_get(const boomslang_Integer& n){
+    return data[ int(n.data) ];
 }
 
 template <class what> boomslang_Integer boomslang_List<what>::boomslang_length(){
     return boomslang_Integer(data.size());
+}
+
+//Base Array Functions
+template <class what> boomslang_Array<what>::boomslang_Array(){}
+template <class what> boomslang_Array<what>::boomslang_Array(const boomslang_Number& len){
+    data = new what[(int) len.data];
+}
+template <class what> boomslang_Array<what>::boomslang_Array(const boomslang_Integer& len){
+    data = new what[(int) len.data];
+}
+template <class what> boomslang_Array<what>::~boomslang_Array(){
+    delete[] data;
+}
+template <class what> void boomslang_Array<what>::boomslang_resize(const boomslang_Number& len){
+    delete[] data;
+    data = new what[(int) len.data];
+}
+template <class what> void boomslang_Array<what>::boomslang_resize(const boomslang_Integer& len){
+    delete[] data;
+    data = new what[(int) len.data];
+}
+template <class what> what& boomslang_Array<what>::boomslang_get(const boomslang_Number& index){
+    return data[(int) index.data];
+}
+template <class what> what& boomslang_Array<what>::boomslang_get(const boomslang_Integer& index){
+    return data[(int) index.data];
+}
+template <class what> void boomslang_Array<what>::boomslang_clear(){
+    delete[] data;
+    data = NULL;
 }
 
 //Base Map Functions

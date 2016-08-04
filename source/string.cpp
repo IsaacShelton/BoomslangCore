@@ -82,6 +82,14 @@ boomslang_Byte boomslang_String::boomslang_toByte(){
     std::stringstream(data) >> result;
     return boomslang_Byte(result);
 }
+boomslang_Boolean boomslang_String::boomslang_toBoolean(){
+    if(data == "true"){
+        return boomslang_Boolean(true);
+    }
+    else {
+        return boomslang_Boolean(false);
+    }
+}
 
 boomslang_String::operator std::string(){
     return data;

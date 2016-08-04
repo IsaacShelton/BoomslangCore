@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 #include <sstream>
 
@@ -36,6 +35,18 @@ boomslang_Byte::operator float(){
 //Assignment
 void boomslang_Byte::operator=(boomslang_Byte other){
     data = other.data;
+}
+void boomslang_Byte::operator+=(boomslang_Byte other){
+    data += other.data;
+}
+void boomslang_Byte::operator-=(boomslang_Byte other){
+    data -= other.data;
+}
+void boomslang_Byte::operator*=(boomslang_Byte other){
+    data *= other.data;
+}
+void boomslang_Byte::operator/=(boomslang_Byte other){
+    data /= other.data;
 }
 
 //Addition
@@ -98,7 +109,14 @@ boomslang_UnsignedInteger boomslang_Byte::boomslang_toUnsignedInteger(){
 boomslang_Integer boomslang_Byte::boomslang_toInteger(){
     return boomslang_Integer(data);
 }
-
+boomslang_Boolean boomslang_Byte::boomslang_toBoolean(){
+    if(data == 1){
+        return boomslang_Boolean(true);
+    }
+    else {
+        return boomslang_Boolean(false);
+    }
+}
 
 //Comparison
 bool boomslang_Byte::operator==(boomslang_Byte other){
