@@ -11,13 +11,6 @@
 #define boomslang_true  boomslang_Boolean(1)
 #define boomslang_false boomslang_Boolean(0)
 
-#define boomslang_cint    int
-#define boomslang_cuint   unsigned int
-#define boomslang_cchar   char
-#define boomslang_cbool   bool
-#define boomslang_cfloat  float
-#define boomslang_cdouble double
-
 class boomslang_String;
 class boomslang_Number;
 class boomslang_UnsignedInteger;
@@ -388,16 +381,21 @@ template <class what>
 class boomslang_Array{
     public:
     what* data = NULL;
+    size_t length = 0;
 
     boomslang_Array();
     boomslang_Array(const boomslang_Number&);
     boomslang_Array(const boomslang_Integer&);
+    boomslang_Array(const boomslang_Array<what>&);
     ~boomslang_Array();
+    void operator=(const boomslang_Array<what>&);
     void boomslang_resize(const boomslang_Number&);
     void boomslang_resize(const boomslang_Integer&);
     what& boomslang_get(const boomslang_Number&);
     what& boomslang_get(const boomslang_Integer&);
     void boomslang_clear();
+
+    boomslang_Integer boomslang_length();
 };
 
 //Base map class
@@ -609,8 +607,24 @@ template <class what> boomslang_Array<what>::boomslang_Array(const boomslang_Num
 template <class what> boomslang_Array<what>::boomslang_Array(const boomslang_Integer& len){
     data = new what[(int) len.data];
 }
+template <class what> boomslang_Array<what>::boomslang_Array(const boomslang_Array<what>& other){
+    delete[] data;
+    data = new what[other.length];
+
+    for(size_t i = 0; i < other.length; i++){
+        data[i] = other.data[i];
+    }
+}
 template <class what> boomslang_Array<what>::~boomslang_Array(){
     delete[] data;
+}
+template <class what> void boomslang_Array<what>::operator=(const boomslang_Array<what>& other){
+    delete[] data;
+    data = new what[other.length];
+
+    for(size_t i = 0; i < other.length; i++){
+        data[i] = other.data[i];
+    }
 }
 template <class what> void boomslang_Array<what>::boomslang_resize(const boomslang_Number& len){
     delete[] data;
@@ -629,6 +643,9 @@ template <class what> what& boomslang_Array<what>::boomslang_get(const boomslang
 template <class what> void boomslang_Array<what>::boomslang_clear(){
     delete[] data;
     data = NULL;
+}
+template <class what> boomslang_Integer boomslang_Array<what>::boomslang_length(){
+    return boomslang_Integer(length);
 }
 
 //Base Map Functions
