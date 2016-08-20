@@ -82,6 +82,10 @@ class boomslang_Number{
     void operator-=(boomslang_Number);
     void operator*=(boomslang_Number);
     void operator/=(boomslang_Number);
+    boomslang_Number operator++(int);
+    boomslang_Number operator--(int);
+    boomslang_Number operator++();
+    boomslang_Number operator--();
     boomslang_Number operator+(const boomslang_Number&);
     boomslang_Number operator-(const boomslang_Number&);
     boomslang_Number operator*(const boomslang_Number&);
@@ -142,6 +146,10 @@ class boomslang_UnsignedInteger{
     void operator-=(boomslang_UnsignedInteger);
     void operator*=(boomslang_UnsignedInteger);
     void operator/=(boomslang_UnsignedInteger);
+    boomslang_UnsignedInteger operator++(int);
+    boomslang_UnsignedInteger operator--(int);
+    boomslang_UnsignedInteger operator++();
+    boomslang_UnsignedInteger operator--();
     boomslang_UnsignedInteger operator+(const boomslang_UnsignedInteger&);
     boomslang_UnsignedInteger operator-(const boomslang_UnsignedInteger&);
     boomslang_UnsignedInteger operator*(const boomslang_UnsignedInteger&);
@@ -197,6 +205,10 @@ class boomslang_Integer{
     void operator-=(boomslang_Integer);
     void operator*=(boomslang_Integer);
     void operator/=(boomslang_Integer);
+    boomslang_Integer operator++(int);
+    boomslang_Integer operator--(int);
+    boomslang_Integer operator++();
+    boomslang_Integer operator--();
     boomslang_Integer operator+(const boomslang_Integer&);
     boomslang_Integer operator-(const boomslang_Integer&);
     boomslang_Integer operator*(const boomslang_Integer&);
@@ -255,6 +267,10 @@ class boomslang_Byte{
     void operator-=(boomslang_Byte);
     void operator*=(boomslang_Byte);
     void operator/=(boomslang_Byte);
+    boomslang_Byte operator++(int);
+    boomslang_Byte operator--(int);
+    boomslang_Byte operator++();
+    boomslang_Byte operator--();
     boomslang_Byte operator+(const boomslang_Byte&);
     boomslang_Byte operator-(const boomslang_Byte&);
     boomslang_Byte operator*(const boomslang_Byte&);

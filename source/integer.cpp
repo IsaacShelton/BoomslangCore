@@ -61,6 +61,18 @@ void boomslang_Integer::operator*=(boomslang_Integer other){
 void boomslang_Integer::operator/=(boomslang_Integer other){
     data /= other.data;
 }
+boomslang_Integer boomslang_Integer::operator++(int){
+    return boomslang_Integer( data++ );
+}
+boomslang_Integer boomslang_Integer::operator--(int){
+    return boomslang_Integer( data-- );
+}
+boomslang_Integer boomslang_Integer::operator++(){
+    return boomslang_Integer( data++ );
+}
+boomslang_Integer boomslang_Integer::operator--(){
+    return boomslang_Integer( data-- );
+}
 
 //Addition
 boomslang_Integer boomslang_Integer::operator+(const boomslang_Integer& other){

@@ -48,6 +48,18 @@ void boomslang_Byte::operator*=(boomslang_Byte other){
 void boomslang_Byte::operator/=(boomslang_Byte other){
     data /= other.data;
 }
+boomslang_Byte boomslang_Byte::operator++(int){
+    return boomslang_Byte( data++ );
+}
+boomslang_Byte boomslang_Byte::operator--(int){
+    return boomslang_Byte( data-- );
+}
+boomslang_Byte boomslang_Byte::operator++(){
+    return boomslang_Byte( data++ );
+}
+boomslang_Byte boomslang_Byte::operator--(){
+    return boomslang_Byte( data-- );
+}
 
 //Addition
 boomslang_Byte boomslang_Byte::operator+(const boomslang_Byte& other){

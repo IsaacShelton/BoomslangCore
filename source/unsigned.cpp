@@ -67,6 +67,18 @@ void boomslang_UnsignedInteger::operator*=(boomslang_UnsignedInteger other){
 void boomslang_UnsignedInteger::operator/=(boomslang_UnsignedInteger other){
     data /= other.data;
 }
+boomslang_UnsignedInteger boomslang_UnsignedInteger::operator++(int){
+    return boomslang_UnsignedInteger( data++ );
+}
+boomslang_UnsignedInteger boomslang_UnsignedInteger::operator--(int){
+    return boomslang_UnsignedInteger( data-- );
+}
+boomslang_UnsignedInteger boomslang_UnsignedInteger::operator++(){
+    return boomslang_UnsignedInteger( data++ );
+}
+boomslang_UnsignedInteger boomslang_UnsignedInteger::operator--(){
+    return boomslang_UnsignedInteger( data-- );
+}
 
 //Addition
 boomslang_UnsignedInteger boomslang_UnsignedInteger::operator+(const boomslang_UnsignedInteger& other){
