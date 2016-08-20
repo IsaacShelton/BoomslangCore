@@ -183,11 +183,6 @@ bool boomslang_Number::operator<=(boomslang_Number other) const{
 }
 
 //Console methods
-void boomslang_Number::boomslang_output(){
-    std::ostringstream convert;
-    convert << data;
-    std::cout << convert.str() << std::endl;
-}
 void boomslang_Number::boomslang_output() const{
     std::ostringstream convert;
     convert << data;
@@ -198,11 +193,6 @@ void boomslang_Number::boomslang_input(){
     std::getline(std::cin,input);
 
     if( ! (std::istringstream(input) >> data) ) data = 0;
-}
-void boomslang_Number::boomslang_print(){
-    std::ostringstream convert;
-    convert << data;
-    std::cout << convert.str();
 }
 void boomslang_Number::boomslang_print() const{
     std::ostringstream convert;

@@ -153,7 +153,7 @@ boomslang_Byte boomslang_Boolean::boomslang_toByte(){
 }
 
 //Console methods
-void boomslang_Boolean::boomslang_output(){
+void boomslang_Boolean::boomslang_output() const{
     if(data == true){
         std::cout << "true" << std::endl;
     } else {
@@ -170,7 +170,7 @@ void boomslang_Boolean::boomslang_input(){
         data = 0;
     }
 }
-void boomslang_Boolean::boomslang_print(){
+void boomslang_Boolean::boomslang_print() const{
     if(data == true){
         std::cout << "true";
     } else {

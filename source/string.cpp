@@ -99,25 +99,28 @@ boomslang_String::operator const char*(){
 }
 
 //Console methods
-void boomslang_String::boomslang_output(){
-    std::cout << data << std::endl;
-}
 void boomslang_String::boomslang_output() const{
     std::cout << data << std::endl;
 }
 void boomslang_String::boomslang_input(){
     std::getline(std::cin,data);
 }
-void boomslang_String::boomslang_print(){
-    std::cout << data;
-}
 void boomslang_String::boomslang_print() const{
     std::cout << data;
 }
-void boomslang_String::boomslang_wait(){
+void boomslang_String::boomslang_wait() const{
     std::string s;
     std::getline(std::cin,s);
-}void boomslang_String::boomslang_wait() const{
-    std::string s;
-    std::getline(std::cin,s);
+}
+void boomslang_String::boomslang_fail() const{
+    std::cerr << data << std::endl;
+}
+void boomslang_String::boomslang_printError() const{
+    std::cerr << data;
+}
+void boomslang_String::boomslang_log() const{
+    std::clog << data << std::endl;
+}
+void boomslang_String::boomslang_printLog() const{
+    std::clog << data;
 }

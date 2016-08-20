@@ -169,7 +169,7 @@ bool boomslang_Byte::operator<=(boomslang_Byte other) const{
 }
 
 //Console methods
-void boomslang_Byte::boomslang_output(){
+void boomslang_Byte::boomslang_output() const{
     std::ostringstream convert;
     convert << data;
     std::cout << convert.str() << std::endl;
@@ -180,7 +180,7 @@ void boomslang_Byte::boomslang_input(){
 
     if( ! (std::istringstream(input) >> data) ) data = 0;
 }
-void boomslang_Byte::boomslang_print(){
+void boomslang_Byte::boomslang_print() const{
     std::ostringstream convert;
     convert << data;
     std::cout << convert.str();

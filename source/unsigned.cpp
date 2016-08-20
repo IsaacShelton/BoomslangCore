@@ -175,11 +175,6 @@ bool boomslang_UnsignedInteger::operator<=(boomslang_UnsignedInteger other) cons
 }
 
 //Console methods
-void boomslang_UnsignedInteger::boomslang_output(){
-    std::ostringstream convert;
-    convert << data;
-    std::cout << convert.str() << std::endl;
-}
 void boomslang_UnsignedInteger::boomslang_output() const{
     std::ostringstream convert;
     convert << data;
@@ -190,11 +185,6 @@ void boomslang_UnsignedInteger::boomslang_input(){
     std::getline(std::cin,input);
 
     if( ! (std::istringstream(input) >> data) ) data = 0;
-}
-void boomslang_UnsignedInteger::boomslang_print(){
-    std::ostringstream convert;
-    convert << data;
-    std::cout << convert.str();
 }
 void boomslang_UnsignedInteger::boomslang_print() const{
     std::ostringstream convert;

@@ -55,13 +55,14 @@ class boomslang_String{
     boomslang_Boolean boomslang_toBoolean();
     operator std::string();
     operator const char*();
-    void boomslang_output();
     void boomslang_output() const;
     void boomslang_input();
-    void boomslang_print();
     void boomslang_print() const;
-    void boomslang_wait();
     void boomslang_wait() const;
+    void boomslang_fail() const;
+    void boomslang_printError() const;
+    void boomslang_log() const;
+    void boomslang_printLog() const;
 };
 
 //Base number class
@@ -121,10 +122,8 @@ class boomslang_Number{
     boomslang_Integer boomslang_toInteger();
     boomslang_Byte boomslang_toByte();
     boomslang_Boolean boomslang_toBoolean();
-    void boomslang_output();
     void boomslang_output() const;
     void boomslang_input();
-    void boomslang_print();
     void boomslang_print() const;
 };
 
@@ -180,10 +179,8 @@ class boomslang_UnsignedInteger{
     boomslang_Integer boomslang_toInteger();
     boomslang_Byte boomslang_toByte();
     boomslang_Boolean boomslang_toBoolean();
-    void boomslang_output();
     void boomslang_output() const;
     void boomslang_input();
-    void boomslang_print();
     void boomslang_print() const;
 };
 
@@ -242,10 +239,8 @@ class boomslang_Integer{
     boomslang_Byte boomslang_toByte();
     boomslang_Boolean boomslang_toBoolean();
     void boomslang_output() const;
-    void boomslang_output();
     void boomslang_input();
     void boomslang_print() const;
-    void boomslang_print();
 };
 
 //Base byte class
@@ -303,9 +298,9 @@ class boomslang_Byte{
     boomslang_UnsignedInteger boomslang_toUnsignedInteger();
     boomslang_Integer boomslang_toInteger();
     boomslang_Boolean boomslang_toBoolean();
-    void boomslang_output();
+    void boomslang_output() const;
     void boomslang_input();
-    void boomslang_print();
+    void boomslang_print() const;
 };
 
 // Base Boolean class
@@ -353,9 +348,10 @@ class boomslang_Boolean{
     boomslang_Integer boomslang_toInteger();
     boomslang_UnsignedInteger boomslang_toUnsignedInteger();
     boomslang_Byte boomslang_toByte();
-    void boomslang_output();
+    void boomslang_output() const;
     void boomslang_input();
-    void boomslang_print();
+    void boomslang_print() const;
+    void boomslang_wait() const;
 };
 
 //Base list class
