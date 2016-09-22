@@ -3,7 +3,8 @@ The Core Classes of The Boomslang Programming Language<br>
 <br>
 ## Completed Types:<br>
 &nbsp;&nbsp;String<br>
-&nbsp;&nbsp;Number<br>
+&nbsp;&nbsp;Float<br>
+&nbsp;&nbsp;Double<br>
 &nbsp;&nbsp;Integer<br>
 &nbsp;&nbsp;UnsignedInteger<br>
 &nbsp;&nbsp;Byte<br>
