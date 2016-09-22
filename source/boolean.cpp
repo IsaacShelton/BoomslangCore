@@ -4,7 +4,7 @@
 
 boomslang_Boolean::boomslang_Boolean(){data = false;}
 boomslang_Boolean::boomslang_Boolean(bool what){data = what;}
-boomslang_Boolean::boomslang_Boolean(const boomslang_Number& what){data = (what.data == 1) ? true : false;}
+boomslang_Boolean::boomslang_Boolean(const boomslang_Double& what){data = (what.data == 1) ? true : false;}
 boomslang_Boolean::boomslang_Boolean(const boomslang_Integer& what){data = (what.data == 1) ? true : false;}
 boomslang_Boolean::boomslang_Boolean(const boomslang_UnsignedInteger& what){data = (what.data == 1) ? true : false;}
 boomslang_Boolean::~boomslang_Boolean(){}
@@ -123,11 +123,18 @@ boomslang_String boomslang_Boolean::boomslang_toString(){
         return boomslang_String("false");
     }
 }
-boomslang_Number boomslang_Boolean::boomslang_toNumber(){
+boomslang_Double boomslang_Boolean::boomslang_toDouble(){
     if(data == true){
-        return boomslang_Number(1);
+        return boomslang_Double(1);
     } else {
-        return boomslang_Number(0);
+        return boomslang_Double(0);
+    }
+}
+boomslang_Float boomslang_Boolean::boomslang_toFloat(){
+    if(data == true){
+        return boomslang_Float(1);
+    } else {
+        return boomslang_Float(0);
     }
 }
 boomslang_Integer boomslang_Boolean::boomslang_toInteger(){

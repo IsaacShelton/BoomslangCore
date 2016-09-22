@@ -8,28 +8,16 @@
 boomslang_Byte::boomslang_Byte(){data = 0;}
 boomslang_Byte::~boomslang_Byte(){}
 boomslang_Byte::boomslang_Byte(const double& d){data = d;}
-boomslang_Byte::boomslang_Byte(const int32_t& i){data = i;}
-boomslang_Byte::boomslang_Byte(const uint8_t& u){data = u;}
-boomslang_Byte::boomslang_Byte(const uint32_t& u){data = u;}
+boomslang_Byte::boomslang_Byte(const int& i){data = i;}
+boomslang_Byte::boomslang_Byte(const char& u){data = u;}
+boomslang_Byte::boomslang_Byte(const unsigned int& u){data = u;}
 boomslang_Byte::boomslang_Byte(const bool& b){data = b;}
-boomslang_Byte::boomslang_Byte(const boomslang_Number& n){data = n.data;}
+boomslang_Byte::boomslang_Byte(const boomslang_Double& n){data = n.data;}
 boomslang_Byte::boomslang_Byte(const boomslang_Integer& n){data = n.data;}
 boomslang_Byte::boomslang_Byte(const boomslang_UnsignedInteger& n){data = n.data;}
 
-boomslang_Byte::operator bool(){
+boomslang_Byte::operator char(){
     return data;
-}
-boomslang_Byte::operator int(){
-    return (int)data;
-}
-boomslang_Byte::operator unsigned int(){
-    return (unsigned int)data;
-}
-boomslang_Byte::operator double(){
-    return (double)data;
-}
-boomslang_Byte::operator float(){
-    return (float)data;
 }
 
 //Assignment
@@ -107,8 +95,11 @@ boomslang_String boomslang_Byte::boomslang_toString(){
     conversion << data;
     return boomslang_String(conversion.str());
 }
-boomslang_Number boomslang_Byte::boomslang_toNumber(){
-    return boomslang_Number(data);
+boomslang_Double boomslang_Byte::boomslang_toDouble(){
+    return boomslang_Double(data);
+}
+boomslang_Float boomslang_Byte::boomslang_toFloat(){
+    return boomslang_Float(data);
 }
 boomslang_UnsignedInteger boomslang_Byte::boomslang_toUnsignedInteger(){
     if(data >= 0){

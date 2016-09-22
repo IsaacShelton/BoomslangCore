@@ -62,23 +62,28 @@ bool boomslang_String::operator!=(boomslang_String other) const{
 }
 
 //Conversion
-boomslang_Number boomslang_String::boomslang_toNumber(){
+boomslang_Double boomslang_String::boomslang_toDouble(){
     double result;
     std::stringstream(data) >> result;
-    return boomslang_Number(result);
+    return boomslang_Double(result);
+}
+boomslang_Float boomslang_String::boomslang_toFloat(){
+    float result;
+    std::stringstream(data) >> result;
+    return boomslang_Float(result);
 }
 boomslang_UnsignedInteger boomslang_String::boomslang_toUnsignedInteger(){
-    uint32_t result;
+    unsigned int result;
     std::stringstream(data) >> result;
     return boomslang_UnsignedInteger(result);
 }
 boomslang_Integer boomslang_String::boomslang_toInteger(){
-    int32_t result;
+    int result;
     std::stringstream(data) >> result;
     return boomslang_Integer(result);
 }
 boomslang_Byte boomslang_String::boomslang_toByte(){
-    uint8_t result;
+    char result;
     std::stringstream(data) >> result;
     return boomslang_Byte(result);
 }

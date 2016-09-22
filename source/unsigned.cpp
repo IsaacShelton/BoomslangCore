@@ -17,12 +17,12 @@ boomslang_UnsignedInteger::boomslang_UnsignedInteger(const double& d){
         data = floor(-d);
     }
 }
-boomslang_UnsignedInteger::boomslang_UnsignedInteger(const int32_t& i){data = i;}
+boomslang_UnsignedInteger::boomslang_UnsignedInteger(const int& i){data = i;}
 boomslang_UnsignedInteger::boomslang_UnsignedInteger(const bool& b){data = b;}
-boomslang_UnsignedInteger::boomslang_UnsignedInteger(const uint32_t& u){data = u;}
+boomslang_UnsignedInteger::boomslang_UnsignedInteger(const unsigned int& u){data = u;}
 boomslang_UnsignedInteger::boomslang_UnsignedInteger(const boomslang_Byte& b){data = b.data;}
 boomslang_UnsignedInteger::boomslang_UnsignedInteger(const boomslang_Boolean& b){data = b.data;}
-boomslang_UnsignedInteger::boomslang_UnsignedInteger(const boomslang_Number& b){
+boomslang_UnsignedInteger::boomslang_UnsignedInteger(const boomslang_Double& b){
     if(b.data >= 0){
         data = floor(b.data);
     }
@@ -31,19 +31,7 @@ boomslang_UnsignedInteger::boomslang_UnsignedInteger(const boomslang_Number& b){
     }
 }
 
-boomslang_UnsignedInteger::operator bool(){
-    return data;
-}
-boomslang_UnsignedInteger::operator int(){
-    return data;
-}
 boomslang_UnsignedInteger::operator unsigned int(){
-    return data;
-}
-boomslang_UnsignedInteger::operator double(){
-    return data;
-}
-boomslang_UnsignedInteger::operator float(){
     return data;
 }
 
@@ -118,8 +106,11 @@ boomslang_String boomslang_UnsignedInteger::boomslang_toString(){
     conversion << data;
     return boomslang_String(conversion.str());
 }
-boomslang_Number boomslang_UnsignedInteger::boomslang_toNumber(){
-    return boomslang_Number(data);
+boomslang_Double boomslang_UnsignedInteger::boomslang_toDouble(){
+    return boomslang_Double(data);
+}
+boomslang_Float boomslang_UnsignedInteger::boomslang_toFloat(){
+    return boomslang_Float(data);
 }
 boomslang_Integer boomslang_UnsignedInteger::boomslang_toInteger(){
     return boomslang_Integer(data);
